@@ -77,7 +77,8 @@ async def webhook(secret: str, request: Request):
         raise HTTPException(404)
     p = await request.json()
     # Only react to incoming patient text messages
-    if p.get("owner") is not False or p.get("eventType") != "message":
+    print("WEBHOOK PAYLOAD:", json.dumps(p)[:600])   # debug: remove once working
+    if p.get("owner") is True or p.get("eventType") not in (None, "message"):
         return {"ignored": True}
     text, number, mid = p.get("text"), p.get("waId"), p.get("id")
     if not text or not number or p.get("type", "text") != "text":
@@ -93,7 +94,7 @@ async def webhook(secret: str, request: Request):
     try:
         data = ask_ai(number, text)
     except Exception as e:
-        print("ai error", e)
+        print("ai error", repr(e), getattr(getattr(e, "response", None), "text", "")[:300])
         data = {"reply": FALLBACK, "handoff": True, "booking": None}
     try:
         wati_send(number, data["reply"])
@@ -103,5 +104,5 @@ async def webhook(secret: str, request: Request):
                     else f"Patient needs a human: +{number} said: {text[:150]}")
             wati_send(OWNER, note)
     except Exception as e:
-        print("wati error", e)
+        print("wati error", repr(e), getattr(getattr(e, "response", None), "text", "")[:300])
     return {"ok": True}
