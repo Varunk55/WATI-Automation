@@ -1,0 +1,12 @@
+{
+  "name": "Smile Care Dental (SAMPLE - replace per client)",
+  "area": "Goregaon East, Mumbai",
+  "phone": "+91 99999 99999",
+  "timings": "Mon-Sat 10 am to 6 pm. Closed Sunday.",
+  "address": "Shop 4, Example Building, near Film City Road, Goregaon East",
+  "doctors": "Dr. Mehta (general dentistry, whitening, root canal)",
+  "services_and_fees": "Consultation from Rs 300. Teeth cleaning from Rs 1,200. Whitening from Rs 6,000. Root canal from Rs 4,500. Final price confirmed by the doctor after examination.",
+  "payment_modes": "UPI, cards, cash",
+  "booking_rules": "Appointments are requests until our team confirms. Please give 24 hours notice to cancel or reschedule.",
+  "first_visit": "Bring any old X-rays or prescriptions."
+}
